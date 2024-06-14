@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>40</y>
+      <w>370</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>ZumoCalibrator
+--
++ lineSensors : Zumo32U4LineSensors&amp;
++ buttonA : Zumo32U4ButtonA&amp;
++ buzzer : Zumo32U4Buzzer&amp;
+- black : int
+- gray : int
+- green : int
+- brown : int
+- sensorWaarde : unsigned int[5]
+--
++ calibrateColor() : void
++ calibrateLineSensors(Zumo32U4Motors&amp; motors) : void 
++ getColorValue(const char* colorName) : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>490</y>
+      <w>290</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ZumoProxsensor
+--
+- proxSensors : Zumo32U4ProximitySensors
+- frontproxreading : int
+--
++ init() : void
++ read() : void
++ detect() : void
++ actuatesensor() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>840</y>
+      <w>350</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>ZumoPIDController
+--
+- maxVermogen : int
+- error_offset : const int
+- diff_constant_int : const float
+- diff_constant_afg : const float
+- diff_constant_error : const float
+- lastError : int16_t
+- error_integral : int16_t
+--
++ excecute(int error, Zumo32U4Motors&amp; motors) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>410</y>
+      <w>280</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>ZumoLineFollower
+--
+- lineSensors : Zumo32U4LineSensors
+- buttonA : Zumo32U4ButtonA
+- motors : Zumo32U4Motors
+- Zumo32U4Buzzer : buzzer
+- calibrator : ZumoCalibrator
+- pidController : ZumoPIDController
+- proxSensor : ZumoProxSensor
+- sensorWaarde : unsigned int[5]
+- maxVermogen : int
+--
++ setup() : void
++ loop() : void
++ checkuitkomst() : void
++ drive() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>460</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>ZumoIMU
+--
+- a : vector&lt;int16_t&gt;
+- ax : float
+- ay : float
+- az : float
+- pitch : float
+--
++ init() : void
++ read() : void
++ printData() : void
++ getPitch() : float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>550</y>
+      <w>240</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+geeft aan &gt;</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>260</y>
+      <w>70</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+doet ^</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>670</y>
+      <w>110</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+stuurt aan v</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>550</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+&lt; geeft aan </panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+</diagram>
